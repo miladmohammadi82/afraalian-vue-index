@@ -77,8 +77,10 @@
 
 <script>
 export default {
-    name: 'Users'
-
+    name: 'Users', 
+    created(){
+        this.$store.dispatch('loadUsers')
+    }
 }
 </script>
 
