@@ -5,7 +5,7 @@
                 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title"><code>{{ count }}</code></h3>
+                        <h3 class="card-title"><code>{{ $store.state.users }}</code></h3>
                         <router-link to="/users/newUser" append class="btn btn-success mt-4">
                             <i class="fas fa-user-plus"></i>&nbsp;افزودن کاربر
                         </router-link>
