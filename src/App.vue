@@ -1,4 +1,5 @@
 <template>
+<div class="content-wrapper">
   <div class="wrapper">
 
   <!-- Navbar -->
@@ -170,10 +171,10 @@
               </a>
               <ul v-show="openaLisetings" class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="pages/charts/chartjs.html" class="nav-link">
+                  <router-link :to="{name: 'Users'}" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>کاربران</p>
-                  </a>
+                  </router-link>
                 </li>
                 <li class="nav-item">
                   <a href="pages/charts/flot.html" class="nav-link">
@@ -210,6 +211,7 @@
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
+  </div>
 </div>
 </template>
 <script>
