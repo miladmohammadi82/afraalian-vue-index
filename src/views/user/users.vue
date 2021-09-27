@@ -5,7 +5,7 @@
                 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title"><code>{{ $store.state.users }}</code></h3>
+                        <h3 class="card-title">کاربران وبسایت</h3>
                         <router-link to="/users/newUser" append class="btn btn-success mt-4">
                             <i class="fas fa-user-plus"></i>&nbsp;افزودن کاربر
                         </router-link>
@@ -38,7 +38,7 @@
                                     <th>عملیات</th>
                                 </tr>
                                 
-                                    <tr v-for="user in users" :key="user.id">
+                                    <tr v-for="user in $store.state.users" :key="user.id">
                                         <td>{{ user.id }}</td>
                                         <td>{{ user.name }}</td>
                                         <td>{{ user.created_at }}</td>
