@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import apiAdmin from "../apis/api-admin";
+
 export default createStore({
   state: {
     users: {},
@@ -12,7 +13,8 @@ export default createStore({
       .then(data => {
         this.state.users = data.data
       })
-    }
+    },
+    
   },
   modules: {
   }
