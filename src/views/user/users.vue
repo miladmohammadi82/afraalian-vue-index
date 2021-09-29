@@ -77,14 +77,37 @@
 
 <script>
 import apiAdmin from "../../apis/api-admin";
+import Swal from 'sweetalert2'
 
 export default {
     name: 'Users', 
     methods: {
         deleteUser(id){
-            apiAdmin.deleteUser(id)
-            
-            setTimeout(performance.now(this.$store.dispatch('loadUsers')), 2000)
+            Swal.fire({
+                title: 'آیا این کاربر حذف شود ؟',
+                text: "این کار غیر قابل بازگشت است!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله, خذف کن',
+                cancelButtonText: 'انصراف'
+            }).then((result) => {
+                apiAdmin.deleteUser(id)
+                 .then(()=> {
+                    
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'حذف شد!',
+                            'این کاربر با موفقیت حذف شد',
+                            'success'
+                        )
+                    }
+                    
+                    this.$store.dispatch('loadUsers')
+                  })
+                
+            })
         }
     },
     created(){
