@@ -1,5 +1,6 @@
 import Api from './api';
 export default{
+    // Start user APIs
     createUser(form){
         return Api().post("/user", form)
     },
@@ -14,5 +15,17 @@ export default{
     },
     getEmployeeUser(id){
         return Api().get("/getEmployeeUser/"+id)
+    },
+    // END user APIs
+
+
+    // Start Product APIs
+
+    getProducts(){
+        return Api().get("/product")
     }
+
+    // END Product APIs
+
+
 }

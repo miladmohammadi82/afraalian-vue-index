@@ -37,13 +37,12 @@
                                     <th>لینک</th>
                                     <th>دسته بندی ها</th>
                                     <th>وضعیت</th>
-                                    <th>تارییخ ساخت</th>
                                 </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td><img width="50px" height="50px" src=""></td>
-                                        <td></td>
+                                    <tr v-for="product in $store.state.products" :key="product.id">
+                                        <td>{{ product.id }}</td>
+                                        <td>{{ product.name }}</td>
+                                        <td><img width="50px" height="50px" :src="product.index_image"></td>
+                                        <td>{{ product.slug }}</td>
                                         <td>
                                         
                                            
@@ -51,15 +50,14 @@
                                         </td>
                                         <td>
                                            
-                                                <a href=""
-                                                    class="border-0"><span class="badge badge-success">تایید شده</span></a>
-                                     
-                                           
-                                                <a href=""><span
-                                                        class="badge badge-danger">تایید نشده</span></a>
-                                            
+                                            <a href="" v-if="product.active == 1"
+                                                class="border-0"><span class="badge badge-success">تایید شده</span></a>
+                                    
+                                        
+                                            <a href="" v-if="product.active == 0"><span
+                                                class="badge badge-danger">تایید نشده</span></a>
+                                        
                                         </td>
-                                        <td></td>
                                         <td>
                                             <a href=""
                                                 class="btn btn-primary">
@@ -94,10 +92,16 @@
 
 <script>
 export default {
-
+    name: 'products',
+    created(){
+        this.$store.dispatch('loadProducts')
+    }
 }
 </script>
 
-<style>
-
+<style scoped>
+img{
+    width: 50px !important;
+    height: 50px !important;
+} 
 </style>

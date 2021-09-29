@@ -4,6 +4,7 @@ import apiAdmin from "../apis/api-admin";
 export default createStore({
   state: {
     users: {},
+    products: {}
   },
   mutations: {
   },
@@ -14,7 +15,12 @@ export default createStore({
         this.state.users = data.data
       })
     },
-    
+    loadProducts(){
+      apiAdmin.getProducts()
+      .then(data=> {
+        this.state.products = data.data
+      })
+    }
   },
   modules: {
   }
