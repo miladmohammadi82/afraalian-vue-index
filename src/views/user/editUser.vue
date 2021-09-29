@@ -5,7 +5,7 @@
                 <div class="justify-content-center anime fade-in-y fast forgot row">
                     <div class="box-input-auth p-3 rounded col-9 col-sm-7 col-md-5 col-lg-4">
                         <div class="">
-                            <form >
+                            <form @submit.prevent="editUser">
                                
                                 <div class="input-fild-box form-group">
                                     <label for="">نام</label>
@@ -84,28 +84,21 @@ export default {
     name: 'Newusers',
     data(){
         return{
-            form: {
-                name: "",
-                email: "",
-                phone: "",
-                password: "",
-                role: "",
-            },
             errors: {},
             user: {}
         }
     },
     methods: {
-        // editUser(){
-        //     apiAdmin.editUser(this.form.id, this.form)
-        //         .catch(error => {
-        //             if (error.response.status === 422) {
-        //             this.errors = error.response.data.errors
-        //         }
-        //     }) 
-        //     this.$router.push({ name: 'Users' })
-        //     this.$store.dispatch('loadUsers');
-        // }
+        editUser(){
+            apiAdmin.editUser(this.$route.params.id, this.user)
+                .catch(error => {
+                    if (error.response.status === 422) {
+                    this.errors = error.response.data.errors
+                }
+            }) 
+            this.$router.push({ name: 'Users' })
+            this.$store.dispatch('loadUsers');
+        },
         getEmployee(){
             apiAdmin.getEmployeeUser(this.$route.params.id)
             .then((response) => {
