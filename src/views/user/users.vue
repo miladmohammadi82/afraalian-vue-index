@@ -48,9 +48,9 @@
                                             <span v-if="user.role == 1" class="badge badge-warning">مالک</span>
                                         </td>
                                         <td>
-                                            <a href="" class="btn btn-primary">
+                                            <router-link @click.prevent="this.$store.commit('editUser', user)" :to="{name: 'editUser', params: { id: user.id }}" class="btn btn-primary">
                                                 <i class="fas fa-edit"></i>
-                                            </a>&nbsp;
+                                            </router-link>&nbsp;
                                           
                                                 <button @click.passive="deleteUser" type="submit" class="btn btn-danger">
                                                     <i class="fas fa-trash"></i>
