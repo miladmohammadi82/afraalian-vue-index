@@ -10,7 +10,7 @@ export default{
         return Api().put("/user/"+id, form)
     },
     deleteUser(id){
-        return Api().delete("/user"+id)
+        return Api().delete("/user/"+id)
     },
     getEmployeeUser(id){
         return Api().get("/getEmployeeUser/"+id)

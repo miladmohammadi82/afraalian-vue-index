@@ -52,7 +52,7 @@
                                                 <i class="fas fa-edit"></i>
                                             </router-link>&nbsp;
                                           
-                                                <button @click.passive="deleteUser" type="submit" class="btn btn-danger">
+                                                <button @click.passive="deleteUser(user.id)" type="submit" class="btn btn-danger">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
 
@@ -76,8 +76,17 @@
 </template>
 
 <script>
+import apiAdmin from "../../apis/api-admin";
+
 export default {
     name: 'Users', 
+    methods: {
+        deleteUser(id){
+            apiAdmin.deleteUser(id)
+            
+            setTimeout(performance.now(this.$store.dispatch('loadUsers')), 2000)
+        }
+    },
     created(){
         this.$store.dispatch('loadUsers')
     }
