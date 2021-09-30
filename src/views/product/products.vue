@@ -92,7 +92,7 @@
 
 <script>
 export default {
-    name: 'products',
+    name: 'Products',
     created(){
         this.$store.dispatch('loadProducts')
     }

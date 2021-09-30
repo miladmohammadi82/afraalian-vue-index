@@ -23,7 +23,10 @@ export default{
 
     getProducts(){
         return Api().get("/product")
-    }
+    },
+    createProduct(form){
+        return Api().post("/product", form)
+    },
 
     // END Product APIs
 
