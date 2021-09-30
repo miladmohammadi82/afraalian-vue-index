@@ -90,7 +90,7 @@
                                     <label for="">انتخاب دسته بندی</label>
                                     <select class="chosen-select form-control" v-model="form.categories" placeholder="دسته بندی را انتخاب کنید" name="categories[]" multiple>
                                         <!-- @foreach ($categories as $cat_id => $cat_name) -->
-                                            <option >sxsx</option>
+                                            <option v-for="(cat_name, cat_id) in categories" :key="cat_name.id" :value="cat_id">{{ cat_name }}</option>
                                         <!-- @endforeach -->
                                     </select>
                                      
@@ -208,7 +208,8 @@ export default {
                 image_gallery2: "",
                 image_gallery3: "", 
             },
-            errors: {}
+            errors: {},
+            categories: {}
         }
     },
     methods: {
@@ -225,6 +226,13 @@ export default {
     },
     components: {
      'editor': Editor
+    },
+    mounted(){
+        apiAdmin.getCategoriesProduct()
+        .then(data => {
+            this.categories = data.data
+            
+        })
     }
 }
 </script>

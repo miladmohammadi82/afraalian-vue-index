@@ -27,7 +27,9 @@ export default{
     createProduct(form){
         return Api().post("/product", form)
     },
-
+    getCategoriesProduct(){
+        return Api().get("/getCategoriesProduct")
+    },
     // END Product APIs
 
 
