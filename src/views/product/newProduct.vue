@@ -40,10 +40,28 @@
 
                                 <div class="input-fild-box form-group">
                                     <label for="">توضیحات</label>
-                                    <textarea id="editor" class="mt-2 form-control "
-                                        placeholder="توضیحات" name="description" ></textarea>
+                                    <!-- <textarea id="editor" class="mt-2 form-control "
+                                        placeholder="توضیحات" name="description" ></textarea> -->
                                     
-                                    
+                                    <editor
+
+                                        placeholder="توضیحات" name="description"
+                                        api-key="n0nsi1n8i73cwvpqkucdgegq6ul8eybpcyqo2z5i90f4mj7z"
+                                        :init="{
+                                            height: 500,
+                                            menubar: false,
+                                            rtl: true,
+                                            plugins: [
+                                            'advlist autolink lists link image charmap print preview anchor',
+                                            'searchreplace visualblocks code fullscreen',
+                                            'insertdatetime media table paste code help wordcount'
+                                            ],
+                                            toolbar:
+                                            'undo redo | formatselect | bold italic backcolor | \
+                                            alignleft aligncenter alignright alignjustify | \
+                                            bullist numlist outdent indent | removeformat | help'
+                                        }"
+                                    />
                                 </div>
 
 
@@ -133,8 +151,12 @@
 </template>
 
 <script>
+import Editor from '@tinymce/tinymce-vue'
 export default {
-
+    name: "newProduct",
+    components: {
+     'editor': Editor
+    }
 }
 </script>
 
