@@ -6,9 +6,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">محصولات این وبسایت</h3>
-                        <a href="{{ route('newProductPage.admin.panel') }}" class="btn btn-success mt-4">
+                        <router-link :to="{name: 'newProduct'}" class="btn btn-success mt-4">
                             <i class="fas fa-user-plus"></i>&nbsp;افزودن محصول جدید
-                        </a>
+                        </router-link>
                         <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
                                 <input type="text" name="table_search" class="form-control float-right" placeholder="جستجو">
