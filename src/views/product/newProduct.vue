@@ -215,13 +215,17 @@ export default {
     methods: {
         cerateProduct(){
             apiAdmin.createProduct(this.form)
+            .then(()=>{
+                this.$router.push({ name: 'Products' })
+                this.$store.dispatch('loadProducts');
+            })
             .catch(error => {
                     if (error.response.status === 422) {
                     this.errors = error.response.data.errors
                 }
             }) 
-            this.$router.push({ name: 'Products' })
-            this.$store.dispatch('loadProducts');
+            
+            
         }
     },
     components: {
