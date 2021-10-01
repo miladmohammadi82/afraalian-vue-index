@@ -6,6 +6,8 @@ import EditUser from '../views/user/editUser.vue'
 
 import Product from '../views/product/products.vue'
 import NewProduct from '../views/product/newProduct.vue'
+import EditProduct from '../views/product/editProduct.vue'
+
 
 const routes = [
   { path: '/', name: 'Home', component: Home, },
@@ -16,6 +18,7 @@ const routes = [
  
   { path: '/products', name: 'Products', component: Product, },
   { path: '/products/newProduct', name: 'newProduct', component: NewProduct, },
+  { path: '/products/editProduct/:id', name: 'editProduct', component: EditProduct, },
 ]
 
 const router = createRouter({
