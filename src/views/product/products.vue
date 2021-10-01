@@ -45,7 +45,7 @@
                                         <td>{{ product.slug }}</td>
                                         <td>
                                         
-                                           
+                                           <span v-for="category in product.categories" :key="category.id" class="badge badge-success m-1">{{ category.title }}</span>
                                            
                                         </td>
                                         <td>
