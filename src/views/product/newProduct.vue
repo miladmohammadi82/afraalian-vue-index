@@ -100,9 +100,9 @@
                                     <label for="">تصویر شاخص</label>
                                     <div class="input-group">
                                         <span class="input-group-btn">
-                                        <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                                        <input id="lfm" type="file" @change="changeIndex_image" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
                                             <i class="fa fa-picture-o"></i> انتخاب
-                                        </a>
+                                        
                                         </span>
                                         <input id="thumbnail" v-model="form.index_image" class="form-control" type="text" name="index_image">
                                     </div>
@@ -224,8 +224,15 @@ export default {
                     this.errors = error.response.data.errors
                 }
             }) 
-            
-            
+        },
+        changeIndex_image(e){
+            let file = e.target.files[0];7
+            let reader  = new FileReader();
+            reader.onloadend = () => {
+                this.form.index_image = reader.result
+            }
+
+            reader.readAsDataURL(file)
         }
     },
     components: {
