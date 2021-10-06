@@ -36,7 +36,9 @@ export default{
     getEmployeeProduct(id){
         return Api().get("/getEmployeeProduct/"+id)
     },
-
+    deleteProduct(id){
+        return Api().delete("/product/"+id)
+    },
     // END Product APIs
 
 

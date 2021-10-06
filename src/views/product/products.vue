@@ -65,7 +65,7 @@
                                             </router-link>&nbsp;
                                             
                                                
-                                                <button type="submit" class="btn btn-danger">
+                                                <button @click.passive="deleteProduct(product.id)" type="submit" class="btn btn-danger">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                            
@@ -91,7 +91,40 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
+import apiAdmin from "../../apis/api-admin";
+
 export default {
+    methods: {
+        deleteProduct(id){
+            Swal.fire({
+                title: 'آیا این کاربر حذف شود ؟',
+                text: "این کار غیر قابل بازگشت است!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله, خذف کن',
+                cancelButtonText: 'انصراف'
+            }).then((result) => {
+                apiAdmin.deleteProduct(id)
+                 .then(()=> {
+                    
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'حذف شد!',
+                            'این کاربر با موفقیت حذف شد',
+                            'success'
+                        )
+                    }
+                    
+                    this.$store.dispatch('loadProducts')
+                  })
+                
+            })
+
+        }
+    },
     name: 'Products',
     created(){
         this.$store.dispatch('loadProducts')
