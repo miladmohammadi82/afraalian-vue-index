@@ -24,12 +24,19 @@ export default{
     getProducts(){
         return Api().get("/product")
     },
+    editProduct(id, form){
+        return Api().put("/product/"+id, form)
+    },
     createProduct(form){
         return Api().post("/product", form)
     },
     getCategoriesProduct(){
         return Api().get("/getCategoriesProduct")
     },
+    getEmployeeProduct(id){
+        return Api().get("/getEmployeeProduct/"+id)
+    },
+
     // END Product APIs
 
 

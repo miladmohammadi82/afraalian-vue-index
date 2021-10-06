@@ -4,11 +4,11 @@
             <div class="container">
 
                         <div class="">
-                            <form @submit.prevent="cerateProduct">
+                            <form @submit.prevent="editProduct">
                                 
                                 <div class="input-fild-box form-group">
                                     <label for="">نام محصول</label>
-                                    <input type="text" v-model="form.name" class="mt-2 form-control  "
+                                    <input type="text" v-model="product.name" class="mt-2 form-control  "
                                         placeholder="نام محصول" name="name" id="">
                                     <ul v-if="errors.name" class="text-danger d-flex">
                                         <li v-for="error in errors.name" :key="error.id">
@@ -20,7 +20,7 @@
 
                                 <div class="input-fild-box form-group">
                                     <label for="">لینک</label>
-                                    <input type="text" v-model="form.slug" class="mt-2 form-control "
+                                    <input type="text" v-model="product.slug" class="mt-2 form-control "
                                         placeholder="لینک" name="slug" id="">
                                     
                                     <ul v-if="errors.slug" class="text-danger d-flex">
@@ -32,7 +32,7 @@
 
                                 <div class="input-fild-box form-group">
                                     <label for="">قیمت محصول</label>
-                                    <input type="text" v-model="form.price" class="mt-2 form-control "
+                                    <input type="text" v-model="product.price" class="mt-2 form-control "
                                          placeholder="قیمت محصول" name="price" id="">
                                     
                                     <ul v-if="errors.price" class="text-danger d-flex">
@@ -44,7 +44,7 @@
 
                                 <div class="input-fild-box form-group">
                                     <label for="">قیمت قبلی محصول</label>
-                                    <input type="text" v-model="form.previous_price" class="mt-2 form-control "
+                                    <input type="text" v-model="product.previous_price" class="mt-2 form-control "
                                         placeholder="قیمت قبلی محصول" name="previous_price" id="">
                                     
                                     <ul v-if="errors.previous_price" class="text-danger d-flex">
@@ -60,7 +60,7 @@
                                         placeholder="توضیحات" name="description" ></textarea> -->
                                     
                                     <editor
-                                        v-model="form.description"
+                                        v-model="product.description"
                                         placeholder="توضیحات" name="description"
                                         api-key="n0nsi1n8i73cwvpqkucdgegq6ul8eybpcyqo2z5i90f4mj7z"
                                         :init="{
@@ -88,9 +88,9 @@
 
                                 <div class="input-fild-box form-group">
                                     <label for="">انتخاب دسته بندی</label>
-                                    <select class="chosen-select form-control" v-model="form.categories" placeholder="دسته بندی را انتخاب کنید" name="categories[]" multiple>
+                                    <select class="chosen-select form-control" v-model="product.categories" placeholder="دسته بندی را انتخاب کنید" name="categories[]" multiple>
                                         <!-- @foreach ($categories as $cat_id => $cat_name) -->
-                                            <option v-for="(cat_name, cat_id) in categories" :key="cat_name.id" :value="cat_id">{{ cat_name }}</option>
+                                            <option v-for="(cat_name, cat_id) in categories" :key="cat_name.id" :value="cat_id" >{{ cat_name }}</option>
                                         <!-- @endforeach -->
                                     </select>
                                      
@@ -100,11 +100,11 @@
                                     <label for="">تصویر شاخص</label>
                                     <div class="input-group">
                                         <span class="input-group-btn">
-                                        <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                                         <input id="lfm" type="file" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
                                             <i class="fa fa-picture-o"></i> انتخاب
-                                        </a>
+                                        
                                         </span>
-                                        <input id="thumbnail" v-model="form.index_image" class="form-control" type="text" name="index_image">
+                                        <input id="thumbnail" v-model="product.index_image" class="form-control" type="text" name="index_image">
                                     </div>
                                     <img id="holder" style="margin-top:15px;max-height:100px;" />
                                     
@@ -125,7 +125,7 @@
                                                 <i class="fa fa-picture-o"></i> انتخاب
                                             </a>
                                             </span>
-                                            <input id="thumbnail-gl" v-model="form.image_gallery1" class="form-control" type="text" name="image_gallery1">
+                                            <input id="thumbnail-gl" v-model="product.image_gallery1" class="form-control" type="text" name="image_gallery1">
                                         </div>
                                         <img id="holder" style="margin-top:15px;max-height:100px;" />
                                         
@@ -142,7 +142,7 @@
                                                 <i class="fa fa-picture-o"></i> انتخاب
                                             </a>
                                             </span>
-                                            <input id="thumbnail-gl2" v-model="form.image_gallery2"  class="form-control" type="text" name="image_gallery2">
+                                            <input id="thumbnail-gl2" v-model="product.image_gallery2"  class="form-control" type="text" name="image_gallery2">
                                         </div>
                                         <img id="holder" style="margin-top:15px;max-height:100px;" />
                                        
@@ -159,7 +159,7 @@
                                                 <i class="fa fa-picture-o"></i> انتخاب
                                             </a>
                                             </span>
-                                            <input id="thumbnail-gl3" v-model="form.image_gallery3" class="form-control" type="text" name="image_gallery3">
+                                            <input id="thumbnail-gl3" v-model="product.image_gallery3" class="form-control" type="text" name="image_gallery3">
                                         </div>
                                         <img id="holder" style="margin-top:15px;max-height:100px;" />
                                         
@@ -196,32 +196,35 @@ export default {
     name: "newProduct",
     data(){
         return{
-            form: {
-                name: "",
-                slug: "",
-                price: "",
-                description: "",
-                categories: [],
-                previous_price: "",
-                index_image: "",
-                image_gallery1: "",
-                image_gallery2: "",
-                image_gallery3: "", 
-            },
+            product: {},
             errors: {},
             categories: {}
         }
     },
     methods: {
-        cerateProduct(){
-            apiAdmin.createProduct(this.form)
-            .catch(error => {
+        editProduct(){
+            apiAdmin.editProduct(this.$route.params.id, this.product)
+                .then(()=>{
+                    this.$router.push({ name: 'Products' })
+                    this.$store.dispatch('loadProducts');
+                })
+                .catch(error => {
                     if (error.response.status === 422) {
                     this.errors = error.response.data.errors
                 }
-            }) 
+                }) 
             this.$router.push({ name: 'Products' })
-            this.$store.dispatch('loadProducts');
+            this.$store.dispatch('loadUsers');
+        },
+        getEmployeeProduct(){
+            apiAdmin.getEmployeeProduct(this.$route.params.id)
+            .then((response) => {
+                this.product = response.data
+                console.log(response.data)
+            })
+            .catch((errors) => {
+                console.log(errors)
+            })
         }
     },
     components: {
@@ -231,8 +234,8 @@ export default {
         apiAdmin.getCategoriesProduct()
         .then(data => {
             this.categories = data.data
-            
         })
+        this.getEmployeeProduct()
     }
 }
 </script>

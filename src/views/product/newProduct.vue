@@ -241,8 +241,7 @@ export default {
     mounted(){
         apiAdmin.getCategoriesProduct()
         .then(data => {
-            this.categories = data.data
-            
+            this.categories = data.data 
         })
     }
 }
