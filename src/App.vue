@@ -177,6 +177,12 @@
                   </router-link>
                 </li>
                 <li class="nav-item">
+                  <router-link :to="{name: 'Categories'}" class="nav-link">
+                    <i class="fa fa-circle-o nav-icon"></i>
+                    <p>دسته بندی ها</p>
+                  </router-link>
+                </li>
+                <li class="nav-item">
                   <a href="pages/charts/flot.html" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>محصولات</p>

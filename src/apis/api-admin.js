@@ -41,5 +41,10 @@ export default{
     },
     // END Product APIs
 
+    // start categories APIs
+    getCategories(){
+        return Api().get("/product")
+    }
+    // END categories APIs
 
 }
