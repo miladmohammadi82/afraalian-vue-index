@@ -39,7 +39,7 @@
                                 </tr>
                                     <tr v-for="category in $store.state.categories" :key="category.id">
                                         <td>{{ category.id }}</td>
-                                        <td>{{ category.name }}</td>
+                                        <td>{{ category.title }}</td>
                                         <td>{{ category.slug }}</td>
                                         <td>
                                         

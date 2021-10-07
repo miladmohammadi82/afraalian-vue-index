@@ -43,7 +43,7 @@ export default{
 
     // start categories APIs
     getCategories(){
-        return Api().get("/product")
+        return Api().get("/category")
     }
     // END categories APIs
 
