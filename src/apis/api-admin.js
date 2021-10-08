@@ -47,7 +47,10 @@ export default{
     },
     getParentCategory(){
         return Api().get("/getParentIdCategory")
-    }
+    },
+    createCategory(form){
+        return Api().post("/category", form)
+    },
     // END categories APIs
 
 }

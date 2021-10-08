@@ -5,7 +5,7 @@
             <div class="justify-content-center anime fade-in-y fast forgot row">
                 <div class="box-input-auth p-3 rounded col-9 col-sm-7 col-md-5 col-lg-4">
                     <div class="">
-                        <form @submit.prevent="createProduct">
+                        <form @submit.prevent="createCategory" method="POST">
                             <div class="input-fild-box form-group">
                                 <label for="">عنوان</label>
                                 <input type="text" v-model="form.title" class="mt-2 form-control " placeholder="نام"
@@ -38,7 +38,7 @@
                             </div>
 
                             <div class="input-fild-box form-group">
-                                <label for="">چیکارست ؟</label>
+                                <label for="">انخاب دسته بندی پدر</label>
                                 <select class="form-control" name="role" id="cars" v-model="form.parent_id">
                                     <option v-for="(parent_title, parent_id) in parents" :key="parent_title.id" :value="parent_id" id="cars">{{ parent_title }}</option>
                                 </select>
@@ -82,7 +82,18 @@ export default {
                 this.parents = data.data 
             })
         },
-        
+        createCategory(){
+            apiAdmin.createCategory(this.form)
+            .then(()=> {
+                this.$router.push({ name: 'Categories' })
+                this.$store.dispatch('loadCategories');
+            })
+            .catch(error => {
+                    if (error.response.status === 422) {
+                    this.errors = error.response.data.errors
+                }
+            }) 
+        }
     }, 
     mounted(){
         this.getParents();

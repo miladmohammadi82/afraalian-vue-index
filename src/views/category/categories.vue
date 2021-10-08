@@ -43,7 +43,7 @@
                                         <td>{{ category.slug }}</td>
                                         <td>
                                         
-                                           {{ category.discription }}
+                                           {{ category.description }}
                                            
                                         </td>
                                         <td>
