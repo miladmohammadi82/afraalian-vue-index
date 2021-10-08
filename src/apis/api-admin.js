@@ -44,6 +44,9 @@ export default{
     // start categories APIs
     getCategories(){
         return Api().get("/category")
+    },
+    getParentCategory(){
+        return Api().get("/getParentIdCategory")
     }
     // END categories APIs
 

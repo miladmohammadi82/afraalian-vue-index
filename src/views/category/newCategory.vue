@@ -5,7 +5,7 @@
             <div class="justify-content-center anime fade-in-y fast forgot row">
                 <div class="box-input-auth p-3 rounded col-9 col-sm-7 col-md-5 col-lg-4">
                     <div class="">
-                        <form @submit.prevent="createUser">
+                        <form @submit.prevent="createProduct">
                             <div class="input-fild-box form-group">
                                 <label for="">عنوان</label>
                                 <input type="text" v-model="form.title" class="mt-2 form-control " placeholder="نام"
@@ -39,10 +39,13 @@
 
                             <div class="input-fild-box form-group">
                                 <label for="">چیکارست ؟</label>
-                                <select class="form-control" name="role" id="cars" v-model="parents">
-                                    <option value="3"  selected id="cars">کاربر ساده</option>
-                                    <option value="2" id="cars">ادمین</option>
+                                <select class="form-control" name="role" id="cars" v-model="form.parent_id">
+                                    <option v-for="(parent_title, parent_id) in parents" :key="parent_title.id" :value="parent_id" id="cars">{{ parent_title }}</option>
                                 </select>
+                            </div>
+
+                            <div class="input-fild-box form-group">
+                                <button type="submit" class="btn btn-success w-100">ورود</button>
                             </div>
 
                         </form>
@@ -56,6 +59,8 @@
 </template>
 
 <script>
+import apiAdmin from "../../apis/api-admin";
+
 export default {
     name: "newCategories",
     data(){
@@ -64,11 +69,24 @@ export default {
                 title: "",
                 slug: "",
                 description: "",
+                parent_id: "",
             },
             errors: {},
             parents: {}
         }
-    }
+    },
+    methods: {
+        getParents(){
+            apiAdmin.getParentCategory()
+            .then(data => {
+                this.parents = data.data 
+            })
+        },
+        
+    }, 
+    mounted(){
+        this.getParents();
+    },
 }
 </script>
 
