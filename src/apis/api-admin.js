@@ -54,6 +54,9 @@ export default{
     getEmployeeCategory(id){
         return Api().get("/getEmployeeCategory/"+id)
     },
+    editCategory(id, form){
+        return Api().put("/category/"+id, form)
+    },
 
     // END categories APIs
 

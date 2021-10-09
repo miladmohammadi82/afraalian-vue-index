@@ -5,7 +5,7 @@
             <div class="justify-content-center anime fade-in-y fast forgot row">
                 <div class="box-input-auth p-3 rounded col-9 col-sm-7 col-md-5 col-lg-4">
                     <div class="">
-                        <form @submit.prevent="createCategory" method="POST">
+                        <form @submit.prevent="editCategory" method="POST">
                             <div class="input-fild-box form-group">
                                 <label for="">عنوان</label>
                                 <input type="text" v-model="category.title" class="mt-2 form-control " placeholder="نام"
@@ -87,6 +87,18 @@ export default {
                 this.parents = data.data 
             })
         },
+        editCategory(){
+            apiAdmin.editCategory(this.$route.params.id, this.category)
+            .then(()=>{
+                this.$router.push({ name: 'Categories' })
+                this.$store.dispatch('loadCategories');
+            })
+            .catch(error => {
+                if (error.response.status === 422) {
+                this.errors = error.response.data.errors
+            }})
+                 
+        }
     }, 
     mounted(){
         this.getEmployeeCategory();
