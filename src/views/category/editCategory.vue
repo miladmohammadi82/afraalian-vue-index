@@ -8,7 +8,7 @@
                         <form @submit.prevent="createCategory" method="POST">
                             <div class="input-fild-box form-group">
                                 <label for="">عنوان</label>
-                                <input type="text" v-model="form.title" class="mt-2 form-control " placeholder="نام"
+                                <input type="text" v-model="category.title" class="mt-2 form-control " placeholder="نام"
                                     name="title" id="">
                                 <ul v-if="errors.title" class="text-danger d-flex">
                                     <li v-for="error in errors.title" :key="error.id">
@@ -18,7 +18,7 @@
                             </div>
                             <div class="input-fild-box form-group">
                                 <label for="">لینک</label>
-                                <input type="text" v-model="form.slug" class="mt-2 form-control " placeholder="نام"
+                                <input type="text" v-model="category.slug" class="mt-2 form-control " placeholder="نام"
                                     name="slug" id="">
                                 <ul v-if="errors.slug" class="text-danger d-flex">
                                     <li v-for="error in errors.slug" :key="error.id">
@@ -28,7 +28,7 @@
                             </div>
                             <div class="input-fild-box form-group">
                                 <label for="">توضیحات</label>
-                                <input type="text" v-model="form.description" class="mt-2 form-control " placeholder="نام"
+                                <input type="text" v-model="category.description" class="mt-2 form-control " placeholder="نام"
                                     name="title" id="">
                                 <ul v-if="errors.description" class="text-danger d-flex">
                                     <li v-for="error in errors.description" :key="error.id">
@@ -39,7 +39,7 @@
 
                             <div class="input-fild-box form-group">
                                 <label for="">انخاب دسته بندی پدر</label>
-                                <select class="form-control" name="role" id="cars" v-model="form.parent_id">
+                                <select class="form-control" name="role" id="cars" v-model="category.parent_id">
                                     <option v-for="(parent_title, parent_id) in parents" :key="parent_title.id" :value="parent_id" id="cars">{{ parent_title }}</option>
                                 </select>
                             </div>
@@ -59,28 +59,39 @@
 </template>
 
 <script>
-// import apiAdmin from "../../apis/api-admin";
+import apiAdmin from "../../apis/api-admin";
 
 export default {
-    name: "newCategories",
+    name: "editCategory",
     data(){
         return{
-            form: {
-                title: "",
-                slug: "",
-                description: "",
-                parent_id: "",
-            },
+            category: {},
             errors: {},
             parents: {}
         }
     },
     methods: {
-        
+        getEmployeeCategory(){
+            apiAdmin.getEmployeeCategory(this.$route.params.id)
+            .then((response) => {
+                this.category = response.data
+                console.log(response.data)
+            })
+            .catch((errors) => {
+                console.log(errors)
+            })
+        },
+        getParents(){
+            apiAdmin.getParentCategory()
+            .then(data => {
+                this.parents = data.data 
+            })
+        },
     }, 
-    // mounted(){
-    //     this.getParents();
-    // },
+    mounted(){
+        this.getEmployeeCategory();
+        this.getParents();
+    },
 }
 </script>
 

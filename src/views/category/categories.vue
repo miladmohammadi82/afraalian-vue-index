@@ -57,10 +57,11 @@
                                         
                                         </td>
                                         <td>
-                                            <a
+                                            <router-link :to="{name: 'editCategory', params: { id: category.id }}"
+
                                                 class="btn btn-primary">
                                                 <i class="fas fa-edit"></i>
-                                            </a>&nbsp;
+                                            </router-link>&nbsp;
                                             
                                                
                                                 <button  type="submit" class="btn btn-danger">

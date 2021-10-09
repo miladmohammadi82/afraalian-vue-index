@@ -51,6 +51,10 @@ export default{
     createCategory(form){
         return Api().post("/category", form)
     },
+    getEmployeeCategory(id){
+        return Api().get("/getEmployeeCategory/"+id)
+    },
+
     // END categories APIs
 
 }
