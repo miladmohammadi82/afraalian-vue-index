@@ -64,7 +64,7 @@
                                             </router-link>&nbsp;
                                             
                                                
-                                                <button  type="submit" class="btn btn-danger">
+                                                <button @click.passive="deleteCategory(category.id)"  type="submit" class="btn btn-danger">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                            
@@ -111,6 +111,12 @@ export default {
                 })
             })
             this.$Progress.finish();
+        },
+        deleteCategory(id){
+            apiAdmin.deleteCategory(id)
+            .then(() => {
+                this.$store.dispatch('loadCategories')
+            })
         }
         
     },

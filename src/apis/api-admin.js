@@ -57,9 +57,11 @@ export default{
     editCategory(id, form){
         return Api().put("/category/"+id, form)
     },
-
     editActiveCategory(id){
         return Api().get('/'+id)
+    },
+    deleteCategory(id){
+        return Api().delete("/category/"+id)
     }
     // END categories APIs
 
