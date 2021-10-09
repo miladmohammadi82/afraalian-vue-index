@@ -101,13 +101,17 @@ export default {
     },
     methods: {
         editActive(id){
+            this.$Progress.start();
             apiAdmin.editActiveCategory(id)
             .then(() => {
                 this.$store.dispatch('loadCategories')
             })
+            this.$Progress.finish();
         }
+        
     },
     created(){
+       
         this.$store.dispatch('loadCategories')
     },
 }
