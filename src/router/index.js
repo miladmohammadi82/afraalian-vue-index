@@ -12,6 +12,8 @@ import Categories from '../views/category/categories.vue'
 import NewCategories from '../views/category/newCategory.vue'
 import EditCategory from '../views/category/editCategory.vue'
 
+import Articles from '../views/article/articles.vue'
+
 const routes = [
   { path: '/', name: 'Home', component: Home, },
 
@@ -26,6 +28,8 @@ const routes = [
   { path: '/categories', name: 'Categories', component: Categories },
   { path: '/categories/newCategories', name: 'newCategories', component: NewCategories },
   { path: '/categories/editCategory/:id', name: 'editCategory', component: EditCategory },
+
+  { path: '/articles', name: 'Articles', component: Articles },
 
 ]
 
