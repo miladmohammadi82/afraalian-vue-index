@@ -60,7 +60,7 @@
 
 <script>
 import apiAdmin from "../../apis/api-admin";
-import swal from '../../swal'
+import swal from '../../swalAlert/success'
 
 export default {
     name: "newCategories",

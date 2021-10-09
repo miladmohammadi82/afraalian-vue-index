@@ -90,7 +90,7 @@
 </template>
 
 <script>
-import swal from '../../swal'
+import swal from '../../swalAlert/success'
 import apiAdmin from "../../apis/api-admin";
 
 export default {
