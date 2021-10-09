@@ -62,7 +62,13 @@ export default{
     },
     deleteCategory(id){
         return Api().delete("/category/"+id)
-    }
+    },
     // END categories APIs
+
+    // start Articles APIs
+    getArticles(){
+        return Api().get("/article")
+    },
+    // END Articles APIs
 
 }

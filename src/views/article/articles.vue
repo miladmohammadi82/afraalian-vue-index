@@ -39,34 +39,35 @@
                                     <th>دسته بندی ها</th>
                                     <th>وضعیت</th>
                                 </tr>
-                                    <tr v-for="category in $store.state.categories" :key="category.id">
-                                        <td>{{ category.id }}</td>
-                                        <td>{{ category.title }}</td>
-                                        <td>{{ category.slug }}</td>
+                                    <tr v-for="article in $store.state.articles" :key="article.id">
+                                        <td>{{ article.id }}</td>
+                                        <td><img :src="article.index_image" ></td>
+                                        <td>{{ article.name }}</td>
+                                        <td>میلاد</td>
+                                        <td>{{ article.hit }}</td>
                                         <td>
-                                        
-                                           {{ category.description }}
-                                           
+                                           <span v-for="category in article.categories" :key="category.id" class="badge badge-primary m-1">{{ category.title }}</span>
                                         </td>
+                                    
                                         <td>
                                            
-                                            <a @click.prevent="editActive(category.id)" v-if="category.active == 1"
+                                            <a @click.prevent="editActive(article.id)" v-if="article.status == 1"
                                                 class="border-0"><span class="badge badge-success">تایید شده</span></a>
                                     
                                         
-                                            <a @click.prevent="editActive(category.id)" href="" v-if="category.active == 0"><span
+                                            <a @click.prevent="editActive(category.id)" href="" v-if="article.status == 0"><span
                                                 class="badge badge-danger">تایید نشده</span></a>
                                         
                                         </td>
                                         <td>
-                                            <router-link :to="{name: 'editCategory', params: { id: category.id }}"
+                                            <a
 
                                                 class="btn btn-primary">
                                                 <i class="fas fa-edit"></i>
-                                            </router-link>&nbsp;
+                                            </a>&nbsp;
                                             
                                                
-                                                <button @click.passive="deleteCategory(category.id)"  type="submit" class="btn btn-danger">
+                                                <button @click.passive="deleteCategory(article.id)"  type="submit" class="btn btn-danger">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                            
@@ -107,7 +108,7 @@ export default {
     },
     created(){
        
-        this.$store.dispatch('loadCategories')
+        this.$store.dispatch('loadArticles')
     },
 }
 </script>
