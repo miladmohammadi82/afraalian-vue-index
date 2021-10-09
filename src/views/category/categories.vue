@@ -91,6 +91,8 @@
 
 <script>
 import swal from '../../swalAlert/success'
+import Swal from 'sweetalert2'
+
 import apiAdmin from "../../apis/api-admin";
 
 export default {
@@ -113,9 +115,28 @@ export default {
             this.$Progress.finish();
         },
         deleteCategory(id){
-            apiAdmin.deleteCategory(id)
-            .then(() => {
-                this.$store.dispatch('loadCategories')
+            Swal.fire({
+                title: 'آیا این دسته بندی حذف شود ؟',
+                text: "این کار غیر قابل بازگشت است!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله, خذف کن',
+                cancelButtonText: 'انصراف'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    apiAdmin.deleteCategory(id)
+                    .then(()=> {
+
+                        Swal.fire(
+                            'حذف شد!',
+                            'این دسته بندی با موفقیت حذف شد',
+                            'success'
+                        )
+                        this.$store.dispatch('loadCategories')
+                    })
+                }      
             })
         }
         
