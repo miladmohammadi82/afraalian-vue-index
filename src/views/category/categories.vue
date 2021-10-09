@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">دسته بندی این وبسایت</h3>
-                        <router-link :to="{name: 'newProduct'}" class="btn btn-success mt-4">
+                        <router-link :to="{name: 'newCategories'}" class="btn btn-success mt-4">
                             <i class="fas fa-user-plus"></i>&nbsp;افزودن دسته بندی جدید
                         </router-link>
                         <div class="card-tools">
@@ -107,7 +107,7 @@ export default {
                 this.$store.dispatch('loadCategories')
                 swal.fire({
                     icon: 'success',
-                    title: 'Signed in successfully'
+                    title: 'وضعیت با موفقیت تغییر کرد'
                 })
             })
             this.$Progress.finish();

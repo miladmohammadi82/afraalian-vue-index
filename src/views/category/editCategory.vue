@@ -60,6 +60,7 @@
 
 <script>
 import apiAdmin from "../../apis/api-admin";
+import swal from '../../swal'
 
 export default {
     name: "editCategory",
@@ -92,6 +93,10 @@ export default {
             .then(()=>{
                 this.$router.push({ name: 'Categories' })
                 this.$store.dispatch('loadCategories');
+                swal.fire({
+                    icon: 'success',
+                    title: 'تغییرات انجام شد'
+                })
             })
             .catch(error => {
                 if (error.response.status === 422) {

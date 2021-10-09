@@ -60,6 +60,7 @@
 
 <script>
 import apiAdmin from "../../apis/api-admin";
+import swal from '../../swal'
 
 export default {
     name: "newCategories",
@@ -87,6 +88,10 @@ export default {
             .then(()=> {
                 this.$router.push({ name: 'Categories' })
                 this.$store.dispatch('loadCategories');
+                swal.fire({
+                    icon: 'success',
+                    title: 'دسته بندی با موفقیت ایجاد شد'
+                })
             })
             .catch(error => {
                     if (error.response.status === 422) {
