@@ -58,6 +58,9 @@ export default{
         return Api().put("/category/"+id, form)
     },
 
+    editActiveCategory(id){
+        return Api().get('/'+id)
+    }
     // END categories APIs
 
 }

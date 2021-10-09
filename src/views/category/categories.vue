@@ -48,11 +48,11 @@
                                         </td>
                                         <td>
                                            
-                                            <a href="" v-if="category.active == 1"
+                                            <a @click.prevent="editActive(category.id)" v-if="category.active == 1"
                                                 class="border-0"><span class="badge badge-success">تایید شده</span></a>
                                     
                                         
-                                            <a href="" v-if="category.active == 0"><span
+                                            <a @click.prevent="editActive(category.id)" href="" v-if="category.active == 0"><span
                                                 class="badge badge-danger">تایید نشده</span></a>
                                         
                                         </td>
@@ -91,10 +91,22 @@
 
 <script>
 // import Swal from 'sweetalert2'
-// import apiAdmin from "../../apis/api-admin";
+import apiAdmin from "../../apis/api-admin";
 
 export default {
     name: "Categories",
+    data(){
+        return{
+        }
+    },
+    methods: {
+        editActive(id){
+            apiAdmin.editActiveCategory(id)
+            .then(() => {
+                this.$store.dispatch('loadCategories')
+            })
+        }
+    },
     created(){
         this.$store.dispatch('loadCategories')
     },
