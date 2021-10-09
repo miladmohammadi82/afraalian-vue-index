@@ -43,7 +43,7 @@
                                         <td>{{ article.id }}</td>
                                         <td><img :src="article.index_image" ></td>
                                         <td>{{ article.name }}</td>
-                                        <td>میلاد</td>
+                                        <td>{{ article.user.name }}</td>
                                         <td>{{ article.hit }}</td>
                                         <td>
                                            <span v-for="category in article.categories" :key="category.id" class="badge badge-primary m-1">{{ category.title }}</span>
