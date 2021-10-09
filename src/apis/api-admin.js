@@ -69,6 +69,9 @@ export default{
     getArticles(){
         return Api().get("/article")
     },
+    getCategoriesArticle(){
+        return Api().get("/getCategoriesProduct")
+    }
     // END Articles APIs
 
 }

@@ -13,6 +13,7 @@ import NewCategories from '../views/category/newCategory.vue'
 import EditCategory from '../views/category/editCategory.vue'
 
 import Articles from '../views/article/articles.vue'
+import NewArticle from '../views/article/newArticle.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: Home, },
@@ -30,6 +31,7 @@ const routes = [
   { path: '/categories/editCategory/:id', name: 'editCategory', component: EditCategory },
 
   { path: '/articles', name: 'Articles', component: Articles },
+  { path: '/articles/newArticle', name: 'newArticle', component: NewArticle },
 
 ]
 

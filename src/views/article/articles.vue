@@ -60,11 +60,10 @@
                                         
                                         </td>
                                         <td>
-                                            <a
-
+                                            <router-link :to="{name: 'editProduct', params: { id: product.id }}"
                                                 class="btn btn-primary">
                                                 <i class="fas fa-edit"></i>
-                                            </a>&nbsp;
+                                            </router-link>&nbsp;
                                             
                                                
                                                 <button @click.passive="deleteCategory(article.id)"  type="submit" class="btn btn-danger">
@@ -107,7 +106,6 @@ export default {
     methods: {
     },
     created(){
-       
         this.$store.dispatch('loadArticles')
     },
 }
