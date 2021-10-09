@@ -90,7 +90,7 @@
 </template>
 
 <script>
-// import Swal from 'sweetalert2'
+import swal from '../../swal'
 import apiAdmin from "../../apis/api-admin";
 
 export default {
@@ -105,6 +105,10 @@ export default {
             apiAdmin.editActiveCategory(id)
             .then(() => {
                 this.$store.dispatch('loadCategories')
+                swal.fire({
+                    icon: 'success',
+                    title: 'Signed in successfully'
+                })
             })
             this.$Progress.finish();
         }
