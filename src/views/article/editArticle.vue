@@ -137,7 +137,7 @@ export default {
     },
     methods: {
         editArticle(){
-            apiAdmin.cerateArticle(this.form)
+            apiAdmin.editArticle(this.$route.params.id, this.article)
             .then(()=>{
                 this.$router.push({ name: 'Articles' })
                 this.$store.dispatch('loadArticles');
@@ -152,7 +152,7 @@ export default {
             let file = e.target.files[0];
             let reader  = new FileReader();
             reader.onloadend = () => {
-                this.form.index_image = reader.result
+                this.article.index_image = reader.result
             }
 
             reader.readAsDataURL(file)

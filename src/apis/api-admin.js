@@ -78,6 +78,9 @@ export default{
     getEmployeeArticle(id){
         return Api().get("/getEmployeeArticle/"+id)
     },
+    editArticle(id, form){
+        return Api().put("/article/"+id, form)
+    },
     // END Articles APIs
 
 }
