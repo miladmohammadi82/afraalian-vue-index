@@ -6,8 +6,8 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">دسته بندی این وبسایت</h3>
-                        <router-link :to="{name: 'newCategories'}" class="btn btn-success mt-4">
-                            <i class="fas fa-user-plus"></i>&nbsp;افزودن دسته بندی جدید
+                        <router-link :to="{name: 'newArticle'}" class="btn btn-success mt-4">
+                            <i class="fas fa-user-plus"></i>&nbsp;افزودن
                         </router-link>
                         <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
@@ -60,13 +60,13 @@
                                         
                                         </td>
                                         <td>
-                                            <router-link :to="{name: 'editProduct', params: { id: product.id }}"
+                                            <a
                                                 class="btn btn-primary">
                                                 <i class="fas fa-edit"></i>
-                                            </router-link>&nbsp;
+                                            </a>&nbsp;
                                             
                                                
-                                                <button @click.passive="deleteCategory(article.id)"  type="submit" class="btn btn-danger">
+                                                <button   type="submit" class="btn btn-danger">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                            
@@ -112,5 +112,8 @@ export default {
 </script>
 
 <style scoped>
-
+    img{
+        width: 50px;
+        height: 50px;
+    }
 </style>

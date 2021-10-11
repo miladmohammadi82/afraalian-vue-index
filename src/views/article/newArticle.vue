@@ -4,7 +4,7 @@
             <div class="container">
 
                         <div class="">
-                            <form @submit.prevent="cerateProduct">
+                            <form @submit.prevent="cerateArticle">
                                 
                                 <div class="input-fild-box form-group">
                                     <label for="">عنوان مطلب</label>
@@ -103,61 +103,7 @@
                                     </ul> 
                                 </div>
 
-                                <div class="input-fild-box form-group">
-                                    <label for="">تصویر های گالری</label>
-                                    <div class="list-group-item">
-
-                                        <div class="input-group">
-                                            <span class="input-group-btn">
-                                            <a id="lfm-gl" data-input="thumbnail-gl" data-preview="holder" class="btn btn-primary">
-                                                <i class="fa fa-picture-o"></i> انتخاب
-                                            </a>
-                                            </span>
-                                            <input id="thumbnail-gl" v-model="form.image_gallery1" class="form-control" type="text" name="image_gallery1">
-                                        </div>
-                                        <img id="holder" style="margin-top:15px;max-height:100px;" />
-                                        
-                                        <ul v-if="errors.image_gallery1" class="text-danger d-flex">
-                                            <li v-for="error in errors.image_gallery1" :key="error.id">
-                                                <small>{{errors.image_gallery1[0]}}</small>
-                                            </li>
-                                        </ul> 
-                                    </div>
-                                    <div class="list-group-item">
-                                        <div class="input-group">
-                                            <span class="input-group-btn">
-                                            <a id="lfm-gl2" data-input="thumbnail-gl2" data-preview="holder" class="btn btn-primary">
-                                                <i class="fa fa-picture-o"></i> انتخاب
-                                            </a>
-                                            </span>
-                                            <input id="thumbnail-gl2" v-model="form.image_gallery2"  class="form-control" type="text" name="image_gallery2">
-                                        </div>
-                                        <img id="holder" style="margin-top:15px;max-height:100px;" />
-                                       
-                                       <ul v-if="errors.image_gallery2" class="text-danger d-flex">
-                                            <li v-for="error in errors.image_gallery2" :key="error.id">
-                                                <small>{{errors.image_gallery2[0]}}</small>
-                                            </li>
-                                        </ul> 
-                                    </div>
-                                    <div class="list-group-item">
-                                        <div class="input-group">
-                                            <span class="input-group-btn">
-                                            <a id="lfm-gl3" data-input="thumbnail-gl3" data-preview="holder" class="btn btn-primary">
-                                                <i class="fa fa-picture-o"></i> انتخاب
-                                            </a>
-                                            </span>
-                                            <input id="thumbnail-gl3" v-model="form.image_gallery3" class="form-control" type="text" name="image_gallery3">
-                                        </div>
-                                        <img id="holder" style="margin-top:15px;max-height:100px;" />
-                                        
-                                        <ul v-if="errors.image_gallery3" class="text-danger d-flex">
-                                            <li v-for="error in errors.image_gallery3" :key="error.id">
-                                                <small>{{errors.image_gallery3[0]}}</small>
-                                            </li>
-                                        </ul> 
-                                    </div>
-                                </div>
+                                
 
                                 <div class="input-fild-box form-group">
                                     <button type="submit" class="btn btn-success w-100">ورود</button>
@@ -181,7 +127,7 @@ import Editor from '@tinymce/tinymce-vue'
 import apiAdmin from "../../apis/api-admin";
 
 export default {
-    name: "newProduct",
+    name: "newArticle",
     data(){
         return{
             form: {
@@ -197,11 +143,11 @@ export default {
         }
     },
     methods: {
-        cerateProduct(){
-            apiAdmin.createProduct(this.form)
+        cerateArticle(){
+            apiAdmin.cerateArticle(this.form)
             .then(()=>{
-                this.$router.push({ name: 'Products' })
-                this.$store.dispatch('loadProducts');
+                this.$router.push({ name: 'Articles' })
+                this.$store.dispatch('loadArticles');
             })
             .catch(error => {
                     if (error.response.status === 422) {

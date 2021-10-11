@@ -71,6 +71,9 @@ export default{
     },
     getCategoriesArticle(){
         return Api().get("/getCategoriesProduct")
+    },
+    cerateArticle(form){
+        return Api().post("/article", form)
     }
     // END Articles APIs
 
