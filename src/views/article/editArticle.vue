@@ -125,6 +125,7 @@
 <script>
 import Editor from '@tinymce/tinymce-vue'
 import apiAdmin from "../../apis/api-admin";
+import swal from '../../swalAlert/success'
 
 export default {
     name: "editArticle",
@@ -141,6 +142,10 @@ export default {
             .then(()=>{
                 this.$router.push({ name: 'Articles' })
                 this.$store.dispatch('loadArticles');
+                swal.fire({
+                    icon: 'success',
+                    title: 'دسته بندی با موفقیت ایجاد شد'
+                })
             })
             .catch(error => {
                     if (error.response.status === 422) {
