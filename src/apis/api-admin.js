@@ -74,7 +74,10 @@ export default{
     },
     cerateArticle(form){
         return Api().post("/article", form)
-    }
+    },
+    getEmployeeArticle(id){
+        return Api().get("/getEmployeeArticle/"+id)
+    },
     // END Articles APIs
 
 }
