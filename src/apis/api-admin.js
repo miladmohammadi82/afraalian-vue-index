@@ -84,6 +84,9 @@ export default{
     editActiveArticle(id){
         return Api().get('/'+id)
     },
+    deleteArticle(id){
+        return Api().delete("/article/"+id)
+    },
     // END Articles APIs
 
 }

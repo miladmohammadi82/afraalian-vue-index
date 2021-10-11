@@ -66,7 +66,7 @@
                                             </router-link>&nbsp;
                                             
                                                
-                                                <button   type="submit" class="btn btn-danger">
+                                                <button  @click.passive="deleteArticle(article.id)" type="submit" class="btn btn-danger">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                            
@@ -93,7 +93,7 @@
 
 <script>
 import swal from '../../swalAlert/success'
-// import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 
 import apiAdmin from "../../apis/api-admin";
 
@@ -116,6 +116,31 @@ export default {
             })
             this.$Progress.finish();
         },
+        deleteArticle(id){
+            Swal.fire({
+                title: 'آیا این مطلب حذف شود ؟',
+                text: "این کار غیر قابل بازگشت است!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله, خذف کن',
+                cancelButtonText: 'انصراف'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    apiAdmin.deleteArticle(id)
+                    .then(()=> {
+
+                        Swal.fire(
+                            'حذف شد!',
+                            'این مطلب با موفقیت حذف شد',
+                            'success'
+                        )
+                        this.$store.dispatch('loadArticles')
+                    })
+                }      
+            })
+        }
     },
     created(){
         this.$store.dispatch('loadArticles')
