@@ -155,7 +155,7 @@
               <router-link :to="{name: 'Home'}" class="nav-link">
                 <i class="nav-icon fa fa-dashboard"></i>
                 <p>
-                  مدیریت
+                  داشبورد
                 </p>
               </router-link>
               
@@ -197,7 +197,15 @@
               </ul>
             </li>
             
-            
+            <li class="nav-item has-treeview menu-open">
+              <router-link :to="{name: 'Home'}" class="nav-link">
+                <i class="nav-icon fa fa-jedi-order"></i>
+                <p>
+                  سفارشات
+                </p>
+              </router-link>
+              
+            </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->

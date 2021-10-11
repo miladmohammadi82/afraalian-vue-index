@@ -1,0 +1,161 @@
+<template>
+  <div class="container">
+        <div class="row mt-5">
+            <div class="col-12">
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">دسته بندی این وبسایت</h3>
+                        <router-link :to="{name: 'newArticle'}" class="btn btn-success mt-4">
+                            <i class="fas fa-user-plus"></i>&nbsp;افزودن
+                        </router-link>
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" class="form-control float-right" placeholder="جستجو">
+
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <!-- /.card-header -->
+
+                    <div id="loading">
+                        <vue-simple-spinner class="mt4" size="large" message="Loading..."></vue-simple-spinner>
+                    </div>
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover" style="font-size: 16px;">
+                            <tbody>
+                                <tr>
+                                    <th>آیدی</th>
+                                    <th>آیدی سفارش دهنده</th>
+                                    <th>مبلغ پرداختی</th>
+                                    <th>وضعیت</th>
+                                    <th>وضعیت حمل ونقل</th>
+                                    <th>نام سفارش دهنده</th>
+                                    <th>آدرس</th>
+                                    <th>شهر</th>
+                                    <th>استان</th>
+                                    <th>تلفن</th>
+                                    <th>کدپستی</th>
+                                    <th>تارییخ</th>
+                                </tr>
+                                    <tr v-for="article in $store.state.articles" :key="article.id">
+                                        <td>{{ article.id }}</td>
+                                        <td><img :src="article.index_image" ></td>
+                                        <td>{{ article.name }}</td>
+                                        <td>{{ article.user.name }}</td>
+                                        <td>{{ article.hit }}</td>
+                                        <td>
+                                           <span v-for="category in article.categories" :key="category.id" class="badge badge-primary m-1">{{ category.title }}</span>
+                                        </td>
+                                    
+                                        <td>
+                                           
+                                            <a @click.prevent="editActive(article.id)" href="" v-if="article.status == 1"
+                                                class="border-0"><span class="badge badge-success">تایید شده</span></a>
+                                    
+                                        
+                                            <a @click.prevent="editActive(article.id)" href="" v-if="article.status == 0"><span
+                                                class="badge badge-danger">تایید نشده</span></a>
+                                        
+                                        </td>
+                                        <td>
+                                            <router-link :to="{name: 'editArticle', params: { id: article.id }}"
+                                                class="btn btn-primary">
+                                                <i class="fas fa-edit"></i>
+                                            </router-link>&nbsp;
+                                            
+                                               
+                                                <button  @click.passive="deleteArticle(article.id)" type="submit" class="btn btn-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                           
+
+                                        </td>
+                                    </tr>
+                              
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+</template>
+
+<script>
+import swal from '../../swalAlert/success'
+import Swal from 'sweetalert2'
+
+import apiAdmin from "../../apis/api-admin";
+
+export default {
+    name: "Categories",
+    data(){
+        return{
+        }
+    },
+    methods: {
+        editActive(id){
+            this.$Progress.start();
+            apiAdmin.editActiveArticle(id)
+            .then(() => {
+                this.$store.dispatch('loadArticles')
+                swal.fire({
+                    icon: 'success',
+                    title: 'وضعیت با موفقیت تغییر کرد'
+                })
+            })
+            this.$Progress.finish();
+        },
+        deleteArticle(id){
+            Swal.fire({
+                title: 'آیا این مطلب حذف شود ؟',
+                text: "این کار غیر قابل بازگشت است!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله, خذف کن',
+                cancelButtonText: 'انصراف'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    apiAdmin.deleteArticle(id)
+                    .then(()=> {
+
+                        Swal.fire(
+                            'حذف شد!',
+                            'این مطلب با موفقیت حذف شد',
+                            'success'
+                        )
+                        this.$store.dispatch('loadArticles')
+                    })
+                }      
+            })
+        }
+    },
+    created(){
+        this.$store.dispatch('loadArticles')
+    },
+}
+</script>
+
+<style scoped>
+    img{
+        width: 50px;
+        height: 50px;
+    }
+</style>
