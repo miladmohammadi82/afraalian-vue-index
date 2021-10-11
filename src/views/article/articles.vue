@@ -51,11 +51,11 @@
                                     
                                         <td>
                                            
-                                            <a @click.prevent="editActive(article.id)" v-if="article.status == 1"
+                                            <a @click.prevent="editActive(article.id)" href="" v-if="article.status == 1"
                                                 class="border-0"><span class="badge badge-success">تایید شده</span></a>
                                     
                                         
-                                            <a @click.prevent="editActive(category.id)" href="" v-if="article.status == 0"><span
+                                            <a @click.prevent="editActive(article.id)" href="" v-if="article.status == 0"><span
                                                 class="badge badge-danger">تایید نشده</span></a>
                                         
                                         </td>
@@ -92,10 +92,10 @@
 </template>
 
 <script>
-// import swal from '../../swalAlert/success'
+import swal from '../../swalAlert/success'
 // import Swal from 'sweetalert2'
 
-// import apiAdmin from "../../apis/api-admin";
+import apiAdmin from "../../apis/api-admin";
 
 export default {
     name: "Categories",
@@ -104,6 +104,18 @@ export default {
         }
     },
     methods: {
+        editActive(id){
+            this.$Progress.start();
+            apiAdmin.editActiveArticle(id)
+            .then(() => {
+                this.$store.dispatch('loadArticles')
+                swal.fire({
+                    icon: 'success',
+                    title: 'وضعیت با موفقیت تغییر کرد'
+                })
+            })
+            this.$Progress.finish();
+        },
     },
     created(){
         this.$store.dispatch('loadArticles')

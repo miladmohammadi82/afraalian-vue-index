@@ -81,6 +81,9 @@ export default{
     editArticle(id, form){
         return Api().put("/article/"+id, form)
     },
+    editActiveArticle(id){
+        return Api().get('/'+id)
+    },
     // END Articles APIs
 
 }
