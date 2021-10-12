@@ -44,41 +44,54 @@
                                     <th>کدپستی</th>
                                     <th>تارییخ</th>
                                 </tr>
-                                    <tr v-for="article in $store.state.articles" :key="article.id">
-                                        <td>{{ article.id }}</td>
-                                        <td><img :src="article.index_image" ></td>
-                                        <td>{{ article.name }}</td>
-                                        <td>{{ article.user.name }}</td>
-                                        <td>{{ article.hit }}</td>
+                                    <tr v-for="order in $store.state.orders" :key="order.id">
+                                        <td>{{ order.id }}</td>
+                                        <td>{{ order.user_id }}</td>
+                                        <td>{{ new Intl.NumberFormat().format(order.grand_total) }}</td>
                                         <td>
-                                           <span v-for="category in article.categories" :key="category.id" class="badge badge-primary m-1">{{ category.title }}</span>
-                                        </td>
-                                    
-                                        <td>
-                                           
-                                            <a @click.prevent="editActive(article.id)" href="" v-if="article.status == 1"
-                                                class="border-0"><span class="badge badge-success">تایید شده</span></a>
+                                           <a @click.prevent="editActive(order.id)" v-if="order.status == 'paid'"
+                                                class="border-0"><span class="badge badge-success">پرداخت شده</span></a>
                                     
                                         
-                                            <a @click.prevent="editActive(article.id)" href="" v-if="article.status == 0"><span
-                                                class="badge badge-danger">تایید نشده</span></a>
-                                        
+                                            <a @click.prevent="editActive(order.id)" v-if="order.status == 'pending'"><span
+                                                class="badge badge-danger">در انتضار پرداخت</span></a> 
                                         </td>
                                         <td>
-                                            <router-link :to="{name: 'editArticle', params: { id: article.id }}"
+                                            <a @click.prevent="editActive(order.id)" href="" v-if="order.Shipping_status == 1"
+                                                class="border-0"><span class="badge badge-success">ارسال شده</span></a>
+                                    
+                                        
+                                            <a @click.prevent="editActive(order.id)" href="" v-if="order.Shipping_status == 0"><span
+                                                class="badge badge-danger">ارسال نشده</span></a> 
+                                        </td>
+                                        
+                                        <td>{{ order.shopping_fullname }}</td>
+                                        <td>{{ order.shopping_address }}</td>
+                                        <td>{{ order.shopping_city }}</td>
+                                        <td>{{ order.shopping_state }}</td>
+                                        <td>{{ order.shopping_phone }}</td>
+                                        <td>{{ order.shopping_zipcode }}</td>
+                                        <td>{{ order.created_at }}</td>
+                                        
+                                        <td>
+                                            <router-link :to="{name: 'editArticle', params: { id: order.id }}"
                                                 class="btn btn-primary">
-                                                <i class="fas fa-edit"></i>
+                                                <i class="fas fa-eye"></i>
                                             </router-link>&nbsp;
-                                            
-                                               
-                                                <button  @click.passive="deleteArticle(article.id)" type="submit" class="btn btn-danger">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                           
-
                                         </td>
                                     </tr>
-                              
+                                    <table class="table table-hover" style="font-size: 16px; width: 100%;">
+
+
+                                        
+                                            <ul v-for="item in $store.state.orders.items" :key="item.id" class="order-table-list">
+                                                <li><span>آیدی محصول</span>: {{ item.id }}</li>
+                                                <li><span>نام محصول</span>: {{ item.name }}</li>
+                                                <li><span>قیمت محصول</span>: {{ number_format(item.price) }} تومان</li>
+                                                <li><span>تعداد محصول</span>: {{ item.pivot.quantity }}</li>
+                                            </ul>
+                                    </table>
+
 
                             </tbody>
                         </table>
@@ -98,7 +111,7 @@
 
 <script>
 import swal from '../../swalAlert/success'
-import Swal from 'sweetalert2'
+// import Swal from 'sweetalert2'
 
 import apiAdmin from "../../apis/api-admin";
 
@@ -121,34 +134,10 @@ export default {
             })
             this.$Progress.finish();
         },
-        deleteArticle(id){
-            Swal.fire({
-                title: 'آیا این مطلب حذف شود ؟',
-                text: "این کار غیر قابل بازگشت است!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'بله, خذف کن',
-                cancelButtonText: 'انصراف'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    apiAdmin.deleteArticle(id)
-                    .then(()=> {
-
-                        Swal.fire(
-                            'حذف شد!',
-                            'این مطلب با موفقیت حذف شد',
-                            'success'
-                        )
-                        this.$store.dispatch('loadArticles')
-                    })
-                }      
-            })
-        }
+        
     },
     created(){
-        this.$store.dispatch('loadArticles')
+        this.$store.dispatch('loadOrders')
     },
 }
 </script>

@@ -7,6 +7,7 @@ export default createStore({
     products: {}, 
     categories: {},
     articles: {},
+    orders: {},
   },
   mutations: {
   },
@@ -33,6 +34,12 @@ export default createStore({
       apiAdmin.getArticles()
       .then(data =>  {
         this.state.articles = data.data
+      })
+    },
+    loadOrders(){
+      apiAdmin.getOrder()
+      .then(data =>  {
+        this.state.orders = data.data
       })
     },
   },

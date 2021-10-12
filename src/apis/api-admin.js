@@ -89,4 +89,9 @@ export default{
     },
     // END Articles APIs
 
+    // start Order APIs
+    getOrder(){
+        return Api().get("/getOrders")
+    },
+    // start Order APIs
 }
