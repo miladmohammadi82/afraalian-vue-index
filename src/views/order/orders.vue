@@ -32,21 +32,15 @@
                             <tbody>
                                 <tr>
                                     <th>آیدی</th>
-                                    <th>آیدی سفارش دهنده</th>
                                     <th>مبلغ پرداختی</th>
                                     <th>وضعیت</th>
                                     <th>وضعیت حمل ونقل</th>
                                     <th>نام سفارش دهنده</th>
-                                    <th>آدرس</th>
-                                    <th>شهر</th>
-                                    <th>استان</th>
                                     <th>تلفن</th>
-                                    <th>کدپستی</th>
                                     <th>تارییخ</th>
                                 </tr>
                                     <tr v-for="order in $store.state.orders" :key="order.id">
                                         <td>{{ order.id }}</td>
-                                        <td>{{ order.user_id }}</td>
                                         <td>{{ new Intl.NumberFormat().format(order.grand_total) }}</td>
                                         <td>
                                            <a @click.prevent="editActive(order.id)" v-if="order.status == 'paid'"
@@ -66,33 +60,25 @@
                                         </td>
                                         
                                         <td>{{ order.shopping_fullname }}</td>
-                                        <td>{{ order.shopping_address }}</td>
-                                        <td>{{ order.shopping_city }}</td>
-                                        <td>{{ order.shopping_state }}</td>
                                         <td>{{ order.shopping_phone }}</td>
-                                        <td>{{ order.shopping_zipcode }}</td>
                                         <td>{{ order.created_at }}</td>
                                         
                                         <td>
-                                            <router-link :to="{name: 'editArticle', params: { id: order.id }}"
+                                            <router-link :to="{name: 'showOrders', params: { id: order.id }}"
                                                 class="btn btn-primary">
                                                 <i class="fas fa-eye"></i>
                                             </router-link>&nbsp;
                                         </td>
-                                    </tr>
-                                    <table class="table table-hover" style="font-size: 16px; width: 100%;">
-
-
-                                        
-                                            <ul v-for="item in $store.state.orders.items" :key="item.id" class="order-table-list">
+                                        <!-- <code>{{ order.items }}</code> -->
+                                        <table class="table table-hover" style="font-size: 16px; width: 100%;">
+                                            <ul v-for="item in order.items" :key="item.id" class="order-table-list">
                                                 <li><span>آیدی محصول</span>: {{ item.id }}</li>
                                                 <li><span>نام محصول</span>: {{ item.name }}</li>
-                                                <li><span>قیمت محصول</span>: {{ number_format(item.price) }} تومان</li>
-                                                <li><span>تعداد محصول</span>: {{ item.pivot.quantity }}</li>
+                                                <li><span>قیمت محصول</span>: {{ new Intl.NumberFormat().format(item.price) }} تومان</li>
                                             </ul>
-                                    </table>
-
-
+                                        </table>
+                                    </tr>
+                                    
                             </tbody>
                         </table>
                     </div>
@@ -146,5 +132,9 @@ export default {
     img{
         width: 50px;
         height: 50px;
+    }
+    .order-table-list {
+        background: #ffc107;
+        padding: 21px;
     }
 </style>

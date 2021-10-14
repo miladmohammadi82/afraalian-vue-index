@@ -17,6 +17,8 @@ import NewArticle from '../views/article/newArticle.vue'
 import EditArticle from '../views/article/editArticle.vue'
 
 import Orders from '../views/order/orders.vue'
+import ShowOrders from '../views/order/showOrders.vue'
+
 
 
 const routes = [
@@ -39,6 +41,7 @@ const routes = [
   { path: '/articles/editArticle/:id', name: 'editArticle', component: EditArticle },
 
   { path: '/orders', name: 'Orders', component: Orders },
+  { path: '/orders/showOrders/:id', name: 'showOrders', component: ShowOrders },
 
 
 ]

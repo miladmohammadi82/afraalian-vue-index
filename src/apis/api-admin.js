@@ -93,5 +93,8 @@ export default{
     getOrder(){
         return Api().get("/getOrders")
     },
+    getEmployeeOrder(id){
+        return Api().get("/getEmployeeOrder/"+id)
+    },
     // start Order APIs
 }
