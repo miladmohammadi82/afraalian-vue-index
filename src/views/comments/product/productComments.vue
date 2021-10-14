@@ -69,7 +69,6 @@ export default {
       this.$Progress.start();
       apiAdmin.editActiveCommentProduct(id)
           .then(() => {
-            this.$store.dispatch('loadArticles')
             swal.fire({
               icon: 'success',
               title: 'وضعیت با موفقیت تغییر کرد'

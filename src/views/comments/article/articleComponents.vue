@@ -66,14 +66,13 @@ export default {
     },
     editActive(id) {
       this.$Progress.start();
-      apiAdmin.editActiveCommentProduct(id)
+      apiAdmin.editActiveCommentArticle(id)
           .then(() => {
-            this.$store.dispatch('loadArticles')
+            this.loadComments();
             swal.fire({
               icon: 'success',
               title: 'وضعیت با موفقیت تغییر کرد'
             })
-            this.loadComments();
           })
       this.$Progress.finish();
     },

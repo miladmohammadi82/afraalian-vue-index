@@ -115,5 +115,8 @@ export default{
     getCommentArticle(){
         return Api().get("/commentsArticle")
     },
+    editActiveCommentArticle(id){
+        return Api().get('/commentsArticle/'+id)
+    },
     // END comment article APIs
 }
