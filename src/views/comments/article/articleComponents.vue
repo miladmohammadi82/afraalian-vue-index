@@ -5,7 +5,7 @@
       <tr>
         <th>نام نویسنده</th>
         <th>متن نظر</th>
-        <th>برای محصول</th>
+        <th>برای طلب</th>
         <th>وضغیت</th>
         <th>تاریخ</th>
         <th>عملیات</th>
@@ -47,65 +47,8 @@
 </template>
 
 <script>
-import apiAdmin from "../../../apis/api-admin";
-import swal from "../../../swalAlert/success";
-import Swal from "sweetalert2";
-
 export default {
-  name: "productComments",
-  data() {
-    return {
-      comments: {},
-    }
-  },
-  methods: {
-    loadComments() {
-      apiAdmin.getCommentProduct()
-          .then((response) => {
-            this.comments = response.data
-          })
-    },
-    editActive(id) {
-      this.$Progress.start();
-      apiAdmin.editActiveCommentProduct(id)
-          .then(() => {
-            this.$store.dispatch('loadArticles')
-            swal.fire({
-              icon: 'success',
-              title: 'وضعیت با موفقیت تغییر کرد'
-            })
-            this.loadComments();
-          })
-      this.$Progress.finish();
-    },
-    deleteComment(id) {
-      Swal.fire({
-        title: 'آیا این کاربر حذف شود ؟',
-        text: "این کار غیر قابل بازگشت است!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'بله, خذف کن',
-        cancelButtonText: 'انصراف'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          apiAdmin.deleteProductComment(id)
-          .then(() => {
-            Swal.fire(
-                'حذف شد!',
-                'این کاربر با موفقیت حذف شد',
-                'success'
-            )
-            this.loadComments();
-          })
-        }
-      })
-    }
-  },
-  mounted() {
-    this.loadComments();
-  }
+  name: "articleComments"
 }
 </script>
 

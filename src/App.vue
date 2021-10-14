@@ -216,13 +216,13 @@
               </a>
               <ul v-show="openaListComment" class="nav nav-treeview">
                 <li class="nav-item">
-                  <router-link :to="{name: 'Users'}" class="nav-link">
+                  <router-link :to="{name: 'productComments'}" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>محصولات</p>
                   </router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link :to="{name: 'Categories'}" class="nav-link">
+                  <router-link :to="{name: 'articleComments'}" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>مقالات</p>
                   </router-link>
