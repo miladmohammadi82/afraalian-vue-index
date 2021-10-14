@@ -109,4 +109,11 @@ export default{
         return Api().delete("/commentsProduct/delete/"+id)
     },
     // END comment product APIs
+
+
+    // start comment article APIs
+    getCommentArticle(){
+        return Api().get("/commentsArticle")
+    },
+    // END comment article APIs
 }
