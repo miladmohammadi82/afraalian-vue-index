@@ -75,6 +75,7 @@
                                                 <li><span>آیدی محصول</span>: {{ item.id }}</li>
                                                 <li><span>نام محصول</span>: {{ item.name }}</li>
                                                 <li><span>قیمت محصول</span>: {{ new Intl.NumberFormat().format(item.price) }} تومان</li>
+                                                <li><span>تعداد محصول</span>: {{ item.pivot.quantity }}</li>
                                             </ul>
                                         </table>
                                     </tr>
