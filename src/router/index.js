@@ -19,6 +19,8 @@ import EditArticle from '../views/article/editArticle.vue'
 import Orders from '../views/order/orders.vue'
 import ShowOrders from '../views/order/showOrders.vue'
 
+import ProductComponents from '../views/comments/product/productComments'
+
 
 
 const routes = [
@@ -42,6 +44,8 @@ const routes = [
 
   { path: '/orders', name: 'Orders', component: Orders },
   { path: '/orders/showOrders/:id', name: 'showOrders', component: ShowOrders },
+
+  { path: '/productComments', name: 'productComponents', component: ProductComponents },
 
 
 ]

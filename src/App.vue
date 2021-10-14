@@ -204,8 +204,33 @@
                   سفارشات
                 </p>
               </router-link>
-              
             </li>
+
+            <li class="nav-item has-treeview">
+              <a @click.prevent="openaListComment = !openaListComment" href="#" class="nav-link">
+                <i class="nav-icon fa fa-comments-alt"></i>
+                <p>
+                  نظرات
+                  <i class="right fa fa-angle-left"></i>
+                </p>
+              </a>
+              <ul v-show="openaListComment" class="nav nav-treeview">
+                <li class="nav-item">
+                  <router-link :to="{name: 'Users'}" class="nav-link">
+                    <i class="fa fa-circle-o nav-icon"></i>
+                    <p>محصولات</p>
+                  </router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link :to="{name: 'Categories'}" class="nav-link">
+                    <i class="fa fa-circle-o nav-icon"></i>
+                    <p>مقالات</p>
+                  </router-link>
+                </li>
+
+              </ul>
+            </li>
+
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -235,7 +260,8 @@
 export default {
   data(){
     return{
-      openaLisetings: false
+      openaLisetings: false,
+      openaListComment: false,
     }
   }
 }
