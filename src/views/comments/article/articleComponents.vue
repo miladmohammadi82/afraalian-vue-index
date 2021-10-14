@@ -88,7 +88,7 @@ export default {
         cancelButtonText: 'انصراف'
       }).then((result) => {
         if (result.isConfirmed) {
-          apiAdmin.deleteProductComment(id)
+          apiAdmin.deleteArticleComment(id)
               .then(() => {
                 Swal.fire(
                     'حذف شد!',

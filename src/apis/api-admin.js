@@ -118,5 +118,8 @@ export default{
     editActiveCommentArticle(id){
         return Api().get('/commentsArticle/'+id)
     },
+    deleteArticleComment(id){
+        return Api().delete("/commentsArticle/delete/"+id)
+    },
     // END comment article APIs
 }
