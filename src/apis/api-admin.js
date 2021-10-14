@@ -104,6 +104,9 @@ export default{
     },
     editActiveCommentProduct(id){
         return Api().get('/commentsProduct/'+id)
-    }
+    },
+    deleteProductComment(id){
+        return Api().delete("/commentsProduct/delete/"+id)
+    },
     // END comment product APIs
 }
