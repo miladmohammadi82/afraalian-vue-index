@@ -97,4 +97,13 @@ export default{
         return Api().get("/getEmployeeOrder/"+id)
     },
     // start Order APIs
+
+    // start comment product APIs
+    getCommentProduct(){
+        return Api().get("/commentsProduct")
+    },
+    editActiveCommentProduct(id){
+        return Api().get('/commentsProduct/'+id)
+    }
+    // END comment product APIs
 }

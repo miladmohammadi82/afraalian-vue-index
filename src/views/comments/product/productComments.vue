@@ -4,24 +4,35 @@
     <thead>
       <tr>
         <th>نام نویسنده</th>
-        <th>ایمیل نویسنده</th>
         <th>متن نظر</th>
+        <th>برای محصول</th>
         <th>وضغیت</th>
+        <th>تاریخ</th>
       </tr>
     </thead>
     <tbody class="tbody-mobile">
-    <tr class="comment-table-mobile">
-      <td class="comment-table-mobile-td"><h4>نام نویسنده</h4>&nbsp;
-        علی محمدی 2
+    <tr class="comment-table-mobile" v-for="comment in comments" :key="comment.id" >
+      <td class="comment-table-mobile-td">&nbsp;
+        {{ comment.name }}
       </td>
-      <td class="comment-table-mobile-td"><h4>ایمیل نویسنده</h4>&nbsp;
-        ali@gmail.com
+      <td class="comment-table-mobile-td">&nbsp;
+        {{comment.body }}
       </td>
-      <td class="comment-table-mobile-td"><h4>متن نظر</h4>
-        عااالی بود
+      <td class="comment-table-mobile-td">&nbsp;
+        {{ comment.product_id }}
       </td>
-      <td class="comment-table-mobile-td"><h4>وضغیت</h4>&nbsp;
-        <span><span class="badge badge-success">تایید شده</span></span></td>
+      <td class="comment-table-mobile-td">&nbsp;
+        <a @click.prevent="editActive(comment.id)" href="" v-if="comment.status == 1"
+           class="border-0"><span class="badge badge-success">ارسال شده</span></a>
+
+
+        <a @click.prevent="editActive(comment.id)" href="" v-if="comment.status == 0"><span
+            class="badge badge-danger">ارسال نشده</span></a>
+      </td>
+      <td class="comment-table-mobile-td">&nbsp;
+        {{ comment.created_at }}
+      </td>
+
     </tr>
 
     </tbody>
@@ -30,8 +41,40 @@
 </template>
 
 <script>
+import apiAdmin from "../../../apis/api-admin";
+import swal from "../../../swalAlert/success";
+
 export default {
-  name: "productComponents"
+  name: "productComponents",
+  data(){
+    return{
+      comments: {},
+    }
+  },
+  methods: {
+    loadComments(){
+      apiAdmin.getCommentProduct()
+      .then((response) => {
+        this.comments = response.data
+      })
+    },
+    editActive(id){
+      this.$Progress.start();
+      apiAdmin.editActiveCommentProduct(id)
+        .then(() => {
+          this.$store.dispatch('loadArticles')
+          swal.fire({
+            icon: 'success',
+            title: 'وضعیت با موفقیت تغییر کرد'
+          })
+          this.loadComments();
+        })
+      this.$Progress.finish();
+    },
+  },
+  mounted() {
+    this.loadComments();
+  }
 }
 </script>
 
