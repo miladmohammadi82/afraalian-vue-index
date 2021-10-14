@@ -198,7 +198,7 @@
             </li>
             
             <li class="nav-item has-treeview menu-open">
-              <router-link :to="{name: 'Home'}" class="nav-link">
+              <router-link :to="{name: 'Orders'}" class="nav-link">
                 <i class="nav-icon fa fa-jedi-order"></i>
                 <p>
                   سفارشات
