@@ -22,6 +22,8 @@ import ShowOrders from '../views/order/showOrders.vue'
 import ProductComponents from '../views/comments/product/productComments'
 import ArticleComments from '../views/comments/article/articleComponents.vue'
 
+import Address from '../views/address/address'
+
 
 
 const routes = [
@@ -48,6 +50,8 @@ const routes = [
 
   { path: '/productComments', name: 'productComments', component: ProductComponents },
   { path: '/articleComments', name: 'articleComments', component: ArticleComments },
+
+  { path: '/address', name: 'Address', component: Address },
 
 
 ]

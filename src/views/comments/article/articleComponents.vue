@@ -67,13 +67,13 @@ export default {
     editActive(id) {
       this.$Progress.start();
       apiAdmin.editActiveCommentArticle(id)
-          .then(() => {
-            this.loadComments();
-            swal.fire({
-              icon: 'success',
-              title: 'وضعیت با موفقیت تغییر کرد'
-            })
+        .then(() => {
+          this.loadComments();
+          swal.fire({
+            icon: 'success',
+            title: 'وضعیت با موفقیت تغییر کرد'
           })
+        })
       this.$Progress.finish();
     },
     deleteComment(id) {

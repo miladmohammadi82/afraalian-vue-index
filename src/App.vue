@@ -231,6 +231,16 @@
               </ul>
             </li>
 
+
+            <li class="nav-item has-treeview menu-open">
+              <router-link :to="{name: 'Address'}" class="nav-link">
+                <i class="nav-icon fa fa-address-book"></i>
+                <p>
+                  آدرس ها
+                </p>
+              </router-link>
+            </li>
+
           </ul>
         </nav>
         <!-- /.sidebar-menu -->

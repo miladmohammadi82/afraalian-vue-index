@@ -122,4 +122,11 @@ export default{
         return Api().delete("/commentsArticle/delete/"+id)
     },
     // END comment article APIs
+
+    // start address APIs
+    getAddress(){
+        return Api().get("/address")
+    },
+    // END address APIs
+
 }
