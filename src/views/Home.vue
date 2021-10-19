@@ -18,7 +18,7 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
+  <h4 class="text-center">{{ currentUser.email }}</h4>
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -96,11 +96,32 @@
 
 <script>
 // @ is an alias to /src
+import apiAdmin from "../apis/api-admin";
+import axios from "axios";
 
 
 export default {
   name: 'Home',
-  components: {
+  data(){
+    return{
+      currentUser: {},
+      token: localStorage.getItem('token'),
+    }
+  },
+  methods: {
+    getUser(){
+      axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
+      apiAdmin.getUser()
+      .then((response) => {
+        this.currentUser = response.data[0];
+      })
+      .catch((errors) => {
+        console.log(errors);
+      })
+    }
+  },
+  mounted() {
+    this.getUser();
   }
 }
 </script>

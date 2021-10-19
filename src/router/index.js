@@ -24,6 +24,8 @@ import ArticleComments from '../views/comments/article/articleComponents.vue'
 
 import Address from '../views/address/address'
 
+import Login from '../views/auth/login'
+
 
 
 const routes = [
@@ -52,6 +54,8 @@ const routes = [
   { path: '/articleComments', name: 'articleComments', component: ArticleComments },
 
   { path: '/address', name: 'Address', component: Address },
+
+  { path: '/login', name: 'Login', component: Login },
 
 
 ]

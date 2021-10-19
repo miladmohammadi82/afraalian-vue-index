@@ -1,4 +1,5 @@
 import Api from './api';
+
 export default{
     // Start user APIs
     createUser(form){
@@ -129,4 +130,12 @@ export default{
     },
     // END address APIs
 
+    // start Auth APIs
+     login(form){
+        return Api().post('/login', form)
+    },
+    // END Auth APIs
+    getUser() {
+        return Api().get('/user')
+    }
 }
