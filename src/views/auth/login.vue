@@ -74,7 +74,10 @@ export default {
       apiAdmin.login(this.form)
       .then((response)=> {
         localStorage.setItem('token', response.data.token);
+        let user_serialized = JSON.stringify(response.data.user);
+        localStorage.setItem('user', user_serialized);
         this.$router.push({name: "Home"});
+        this.emitter.emit("login", true);
       });
     }
   },

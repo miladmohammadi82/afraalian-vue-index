@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import apiAdmin from "../apis/api-admin";
+import axios from "axios";
 
 export default createStore({
   state: {
@@ -9,6 +10,9 @@ export default createStore({
     articles: {},
     orders: {},
     orderItems: {},
+    currentUser: JSON.parse(localStorage.getItem('user')),
+    token: localStorage.getItem('token'),
+
   },
   mutations: {
   },
@@ -49,6 +53,16 @@ export default createStore({
         this.state.orderItems = data.data
       })
     },
+    getUser(){
+      axios.defaults.headers.common['Authorization'] = `Bearer ${this.state.token}`
+      // apiAdmin.getUser()
+      //   .then((response) => {
+      //     this.state.currentUser = response.data[0];
+      //   })
+      //   .catch((errors) => {
+      //     console.log(errors);
+      //   })
+    }
   },
   modules: {
   }

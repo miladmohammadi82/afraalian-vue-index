@@ -139,10 +139,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="https://www.gravatar.com/avatar/52f0fbcbedee04a121cba8dad1174462?s=200&d=mm&r=g" class="img-circle elevation-2" alt="User Image">
+            <img v-if="$store.state.currentUser" :src="$store.state.currentUser.profile_photo_url" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">میلاد محمدی</a>
+            <a href="#" class="d-block" v-if="$store.state.currentUser">{{ $store.state.currentUser.name }}</a>
           </div>
         </div>
 
