@@ -57,8 +57,12 @@
 
 <script>
 import apiAdmin from "../../apis/api-admin";
+import mitt from 'mitt';
 
+const emitter = mitt();
 export default {
+
+
   name: "login",
   data(){
     return{
@@ -76,8 +80,9 @@ export default {
         localStorage.setItem('token', response.data.token);
         let user_serialized = JSON.stringify(response.data.user);
         localStorage.setItem('user', user_serialized);
+
         this.$router.push({name: "Home"});
-        this.emitter.emit("login", true);
+        emitter.emit("login", this.$store.commit('editIsLogin'));
       });
     }
   },

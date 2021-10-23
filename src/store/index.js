@@ -12,9 +12,12 @@ export default createStore({
     orderItems: {},
     currentUser: JSON.parse(localStorage.getItem('user')),
     token: localStorage.getItem('token'),
-
+    isLogin: false,
   },
   mutations: {
+    editIsLogin(){
+      this.state.isLogin = true
+    }
   },
   actions: {
     loadUsers(){

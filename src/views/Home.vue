@@ -2,7 +2,7 @@
    <!-- Content Wrapper. Contains page content -->
   
     <!-- Content Header (Page header) -->
-    <div class="content-header">
+    <div class="content-header" v-show="$store.state.isLogin">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
@@ -98,23 +98,26 @@
 // @ is an alias to /src
 // import apiAdmin from "../apis/api-admin";
 // import axios from "axios";
+import mitt from 'mitt';
+
+const emitter = mitt();
 
 
 export default {
   name: 'Home',
   data(){
     return{
-      isLogin: false,
+
     }
   },
   methods: {
 
   },
   mounted() {
-    this.emitter.on("login", () => {
-      this.isLogin = true
+    emitter.on("login", () => {
+      this.$store.commit('editIsLogin')
     });
-    this.isLogin = !!localStorage.getItem('token')
+    this.$store.state.isLogin = !!localStorage.getItem('token')
   },
 }
 </script>

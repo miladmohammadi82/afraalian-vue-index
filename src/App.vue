@@ -125,7 +125,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" v-show="$store.state.isLogin">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
@@ -134,7 +134,7 @@
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar" style="direction: ltr">
+    <div class="sidebar" style="direction: ltr" >
       <div style="direction: rtl">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
