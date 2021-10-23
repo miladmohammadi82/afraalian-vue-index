@@ -14,23 +14,27 @@
             <div class="input-group-append">
               <span class="fa fa-envelope input-group-text"></span>
             </div>
-            <ul v-if="errors.email" class="text-danger d-flex">
-              <li v-for="error in errors.email" :key="error.id">
-                <small>{{errors.email[0]}}</small>
-              </li>
-            </ul>
+            <br>
+
           </div>
+          <ul v-if="errors.email" class="text-danger d-flex">
+            <li v-for="error in errors.email" :key="error.id">
+              <small>{{errors.email[0]}}</small>
+            </li>
+          </ul>
           <div class="input-group mb-3">
             <input type="password" v-model="form.password" name="password" class="form-control" placeholder="رمز عبور">
             <div class="input-group-append">
               <span class="fa fa-lock input-group-text"></span>
             </div>
-            <ul v-if="errors.password" class="text-danger d-flex">
-              <li v-for="error in errors.password" :key="error.id">
-                <small>{{errors.password[0]}}</small>
-              </li>
-            </ul>
+            <br>
+
           </div>
+          <ul v-if="errors.password" class="text-danger d-flex">
+            <li v-for="error in errors.password" :key="error.id">
+              <small>{{errors.password[0]}}</small>
+            </li>
+          </ul>
           <div class="row">
             <div class="col-8">
               <div class="checkbox icheck">
@@ -63,7 +67,7 @@ const emitter = mitt();
 export default {
 
 
-  name: "login",
+  name: "Login",
   data(){
     return{
       form: {
@@ -83,12 +87,19 @@ export default {
 
         this.$router.push({name: "Home"});
         emitter.emit("login", this.$store.commit('editIsLogin'));
-      });
+      })
+      .catch(error => {
+        if (error.response.status === 422) {
+          this.errors = error.response.data.errors
+        }
+      })
     }
   },
 }
 </script>
 
 <style scoped>
-
+  li{
+    list-style: none;
+  }
 </style>

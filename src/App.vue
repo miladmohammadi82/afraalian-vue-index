@@ -241,6 +241,15 @@
               </router-link>
             </li>
 
+            <li class="nav-item">
+              <a class="nav-link text-danger" style="cursor: pointer" @click.prevent="logout">
+                <i class="nav-icon fa fa-portal-exit"></i>
+                <p>
+                  خروج
+                </p>
+              </a>
+            </li>
+
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -265,13 +274,23 @@
 </template>
 <script>
 // @ is an alias to /src
-
+import apiAdmin from "./apis/api-admin";
 
 export default {
   data(){
     return{
       openaLisetings: false,
       openaListComment: false,
+    }
+  },
+  methods: {
+    logout(){
+      apiAdmin.logout()
+          .then(()=> {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            this.$router.push({ name: 'Login' });
+          })
     }
   }
 }

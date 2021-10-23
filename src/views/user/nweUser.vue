@@ -98,13 +98,13 @@ export default {
         createUser(){
             apiAdmin.createUser(this.form)
                 .then(()=>{
-                    this.$router.push({ name: 'Users' })
+                    this.$router.push({ name: 'Login' })
                     this.$store.dispatch('loadUsers');
                 })
                 .catch(error => {
-                    if (error.response.status === 422) {
-                    this.errors = error.response.data.errors
-                }
+                  if (error.response.status === 422) {
+                      this.errors = error.response.data.errors
+                  }
                 }) 
         }
     }

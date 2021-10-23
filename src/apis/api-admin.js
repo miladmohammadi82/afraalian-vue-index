@@ -137,5 +137,10 @@ export default{
     // END Auth APIs
     getUser() {
         return Api().get('/user')
+    },
+    logout() {
+        return Api().post('/logout')
     }
+
+
 }
