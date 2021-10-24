@@ -98,9 +98,7 @@
 // @ is an alias to /src
 // import apiAdmin from "../apis/api-admin";
 // import axios from "axios";
-import mitt from 'mitt';
 
-const emitter = mitt();
 
 
 export default {
@@ -113,11 +111,6 @@ export default {
   methods: {
 
   },
-  mounted() {
-    emitter.on("login", () => {
-      this.$store.commit('editIsLogin')
-    });
-    this.$store.state.isLogin = !!localStorage.getItem('token')
-  },
+
 }
 </script>

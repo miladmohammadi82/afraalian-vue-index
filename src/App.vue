@@ -275,7 +275,9 @@
 <script>
 // @ is an alias to /src
 import apiAdmin from "./apis/api-admin";
+import mitt from 'mitt';
 
+const emitter = mitt();
 export default {
   data(){
     return{
@@ -292,7 +294,13 @@ export default {
             this.$router.push({ name: 'Login' });
           })
     }
-  }
+  },
+  mounted() {
+    emitter.on("login", () => {
+      this.$store.commit('editIsLogin')
+    });
+    this.$store.state.isLogin = !!localStorage.getItem('token')
+  },
 }
 </script>
 
